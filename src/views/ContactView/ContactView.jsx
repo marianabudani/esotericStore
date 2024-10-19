@@ -29,25 +29,73 @@ const ContactView = () => {
         Contact Us
       </Typography>
       <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-        <TextField
-          label="Nombre"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <TextField
-          label="Email"
-          variant="outlined"
-          type="email"
-          fullWidth
-          margin="normal"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+      <TextField
+                    label="Name"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    InputProps={{
+                        style: { 
+                            backgroundColor: '#cccc', 
+                            color: '#005568', // Color del texto
+                            fontSize: '16px', // Tamaño del texto
+                            fontFamily: 'Arial', // Tipografía del texto
+                        },
+                    }}
+                    sx={{
+                        '& .MuiInputLabel-root': { // Estilo de la etiqueta
+                            color: '#005568', // Color de la etiqueta
+                        },
+                        '& .MuiOutlinedInput-root': { // Estilo del borde
+                            '& fieldset': {
+                                borderColor: '#005568', // Color del borde
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#005568', // Color del borde al pasar el ratón
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#005568', // Color del borde cuando está enfocado
+                            },
+                        },
+                    }}
+                />
+                          <TextField
+                    label="Email"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    InputProps={{
+                        style: { 
+                            backgroundColor: '#cccc', 
+                            color: '#005568', 
+                            fontSize: '16px',
+                            fontFamily: 'Arial',
+                        },
+                    }}
+                    sx={{
+                        '& .MuiInputLabel-root': { 
+                            color: '#005568',
+                        },
+                        '& .MuiOutlinedInput-root': { 
+                            '& fieldset': {
+                                borderColor: '#005568', 
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#005568',
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#005568', 
+                            },
+                        },
+                    }}
+                />
         <TextField
           label="Mensaje"
           variant="outlined"
@@ -58,9 +106,33 @@ const ContactView = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           required
+          InputProps={{
+            style: { 
+                backgroundColor: '#cccc', 
+                color: '#005568', 
+                fontSize: '16px',
+                fontFamily: 'Arial',
+            },
+        }}
+        sx={{
+            '& .MuiInputLabel-root': { 
+                color: '#005568',
+            },
+            '& .MuiOutlinedInput-root': { 
+                '& fieldset': {
+                    borderColor: '#005568', 
+                },
+                '&:hover fieldset': {
+                    borderColor: '#005568',
+                },
+                '&.Mui-focused fieldset': {
+                    borderColor: '#005568', 
+                },
+            },
+        }}
         />
         <Button variant="contained" color="primary" type="submit">
-          Enviar
+          Send
         </Button>
       </form>
     </Box>

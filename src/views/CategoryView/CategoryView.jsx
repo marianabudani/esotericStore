@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getCategory } from '../../asyncMock';
-import { Card, CardMedia, CardContent, Typography } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
 
 const CategoryView = () => {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCategory(id).then((filteredProducts) => {
@@ -28,18 +30,19 @@ const CategoryView = () => {
       {products.map((product) => (
         <Card key={product.id} sx={{ maxWidth: 345 }}>
           <CardMedia
-            component="img"
+            component="image"
             height="140"
             image={product.image}
-            alt={product.title}
+            alt={product.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {product.title}
+              {product.name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {product.description}
             </Typography>
+            <Button onClick={() => navigate(`/item/${product.id}`)}>Detalles del producto</Button>
           </CardContent>
         </Card>
       ))}

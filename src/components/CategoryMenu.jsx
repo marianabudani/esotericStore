@@ -8,7 +8,7 @@ const categories = [
   { key: '3', name: 'Books', id: 'books' },
 ];
 
-const MenuCat = () => {
+const CategoryMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -47,4 +47,4 @@ const MenuCat = () => {
   );
 };
 
-export default MenuCat;
+export default CategoryMenu;

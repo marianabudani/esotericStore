@@ -1,6 +1,6 @@
 import { AppBar, Box, Toolbar, IconButton, Typography, Button } from '@mui/material';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import MenuCat from './Button';
+import MenuCat from './CategoryMenu';
 import CartWidget from './CartWidget';
 import { useNavigate } from 'react-router-dom';
 

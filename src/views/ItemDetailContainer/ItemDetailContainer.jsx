@@ -1,67 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchProducts } from '../../asyncMock';
-import { Card, CardContent, CardMedia, Typography, CardActions } from '@mui/material';
-import Button from '@mui/material/Button';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import ItemDetail from '../../components/ItemDetail';
+import { Typography, Box } from '@mui/material';
 
-export default function ItemDetailContainer() {
+
+const ItemDetailContainer = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null); 
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [quantity, setQuantity] = useState(1);
-  
+
   useEffect(() => {
-    fetchProducts().then(products => {
-      const selectedProduct = products.find(item => item.id == id);
-      setProduct(selectedProduct);
-      setLoading(false); 
-    });
+    const db = getFirestore();
+    const productRef = doc(db, 'products', id);
+
+    getDoc(productRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          setProduct({ id: snapshot.id, ...snapshot.data() });
+        }
+      })
+      .finally(() => setLoading(false));
   }, [id]);
 
   if (loading) {
-    return <Typography>Cargando...</Typography>;
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+        <Typography>Loading...</Typography>
+      </Box>
+    );
   }
 
-  if (!product) {
-    return <Typography>Producto no encontrado.</Typography>;
-  }
+  return product ? (<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+  <ItemDetail product={product} />
+</Box>) : (<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}> <Typography>Product not found</Typography> </Box>);
+};
 
-  const handleIncrement = () => {
-    if (quantity < product.stock) {
-      setQuantity(prevQuantity => prevQuantity + 1);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(prevQuantity => prevQuantity - 1);
-    }
-  };
-
-  return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        alt={product.title}
-        height="140"
-        image={product.image}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {product.title}
-        </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {product.description}
-        </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          Stock disponible: {product.stock}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button onClick={handleDecrement} size="small">-</Button>
-        <Typography sx={{ margin: '0 10px' }}>{quantity}</Typography>
-        <Button onClick={handleIncrement} size="small">+</Button>
-      </CardActions>
-    </Card>
-  );
-}
+export default ItemDetailContainer;
