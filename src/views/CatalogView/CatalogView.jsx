@@ -26,9 +26,6 @@ const CatalogView = () => {
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-      <Typography variant="h4" gutterBottom>
-        Product Catalog
-      </Typography>
       <ItemList products={products} />
     </Box>
   );
