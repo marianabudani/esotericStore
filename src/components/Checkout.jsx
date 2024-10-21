@@ -41,7 +41,6 @@ const Checkout = () => {
                 })
             );
 
-            // Muestra el mensaje de éxito con SweetAlert
             Swal.fire({
                 icon: 'success',
                 title: 'Order registered successfully!',
@@ -56,7 +55,7 @@ const Checkout = () => {
                 title: 'Error registering order',
                 text: error.message || "An unexpected error occurred.",
                 confirmButtonText: 'Try Again',
-            }); // Muestra un mensaje de error
+            });
         }
     };
 

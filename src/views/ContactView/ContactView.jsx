@@ -40,14 +40,14 @@ const ContactView = () => {
                     InputProps={{
                         style: { 
                             backgroundColor: '#cccc', 
-                            color: '#005568', // Color del texto
-                            fontSize: '16px', // Tamaño del texto
-                            fontFamily: 'Arial', // Tipografía del texto
+                            color: '#005568',
+                            fontSize: '16px',
+                            fontFamily: 'Arial',
                         },
                     }}
                     sx={{
-                        '& .MuiInputLabel-root': { // Estilo de la etiqueta
-                            color: '#005568', // Color de la etiqueta
+                        '& .MuiInputLabel-root': { 
+                            color: '#005568', 
                         },
                         '& .MuiOutlinedInput-root': { // Estilo del borde
                             '& fieldset': {

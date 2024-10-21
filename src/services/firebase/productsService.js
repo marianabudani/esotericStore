@@ -64,7 +64,7 @@ export const getNextOrderNumber = async () => {
     const docSnap = await getDoc(ordersCounterRef);
     let orderNumber = 1;
 
-    // Si no existe el documento, lo creamos
+    // Si no existe el documento, lo creo
     if (!docSnap.exists()) {
         await setDoc(ordersCounterRef, { date: new Date().toISOString().split('T')[0], count: orderNumber });
     } else {

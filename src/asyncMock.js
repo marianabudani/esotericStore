@@ -64,7 +64,6 @@ const products = [
   },
 ];
 
-// Ahora `getProducts` es una función que retorna una promesa.
 export const getProducts = () => {
   return new Promise((resolve) => {
     setTimeout(() => {

@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { Typography, Button, Card, CardMedia, CardContent, Box } from '@mui/material';
 import ItemCount from './ItemCount';
 import { useState } from 'react';
-import Swal from 'sweetalert2'; // Importar SweetAlert
+import Swal from 'sweetalert2';
+
 
 const ItemDetail = ({ product }) => {
   const { id, name, price, description, stock, img } = product;
@@ -17,7 +18,6 @@ const ItemDetail = ({ product }) => {
     addItem({ id, name, price }, quantity);
     setAddedToCart(true);
 
-    // Muestra el mensaje de éxito con SweetAlert
     Swal.fire({
       icon: 'success',
       title: 'Product added to cart!',

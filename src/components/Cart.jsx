@@ -11,7 +11,7 @@ const Cart = ({ id, name, img, price, quantity }) => {
         <Card sx={{ display: 'flex', marginBottom: 2 }}>
             <CardMedia
                 component="img"
-                sx={{ width: 140, height: 140 }} // Agrega una altura para evitar problemas de alineación
+                sx={{ width: 140, height: 140 }} 
                 image={img}
                 alt={name}
             />
